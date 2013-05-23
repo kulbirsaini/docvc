@@ -41,7 +41,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'videocache'
+project = u'Videocache'
 copyright = u'2013, Kulbir Saini'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -99,10 +99,10 @@ html_theme = 'bootstrap'
 html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
 html_theme_options = {
     # Navigation bar title. (Default: ``project`` value)
-    'navbar_title': "Demo",
+    #'navbar_title': "Videocache",
 
     # Tab name for entire site. (Default: "Site")
-    'navbar_site_name': "Site",
+    'navbar_site_name': "Documentation",
 
     # Global TOC depth for "site" navbar tab. (Default: 1)
     # Switching to -1 shows all levels.
@@ -228,7 +228,7 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'videocache.tex', u'videocache Documentation',
+  ('index', 'videocache.tex', u'Videocache Documentation',
    u'Kulbir Saini', 'manual'),
 ]
 
@@ -258,7 +258,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'videocache', u'videocache Documentation',
+    ('index', 'videocache', u'Videocache Documentation',
      [u'Kulbir Saini'], 1)
 ]
 
@@ -272,8 +272,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'videocache', u'videocache Documentation',
-   u'Kulbir Saini', 'videocache', 'One line description of project.',
+  ('index', 'videocache', u'Videocache Documentation',
+   u'Kulbir Saini', 'Videocache', 'One line description of project.',
    'Miscellaneous'),
 ]
 
@@ -293,7 +293,7 @@ texinfo_documents = [
 # -- Options for Epub output ---------------------------------------------------
 
 # Bibliographic Dublin Core info.
-epub_title = u'videocache'
+epub_title = u'Videocache'
 epub_author = u'Kulbir Saini'
 epub_publisher = u'Kulbir Saini'
 epub_copyright = u'2013, Kulbir Saini'
