@@ -152,6 +152,21 @@ Before you can install Videocache on your server, you need to install and setup 
 :ref:`software-dependencies`.
 
 
+.. _installing-required-packages:
+
+Installing Required Packages
+----------------------------
+
+Videocache requires ``wget``, ``tar``, ``gcc``, Python development libraries during Videocache installation. We can install
+these packages on Ubuntu, Debian, LinuxMint using ``apt-get`` as shown below::
+
+     [user@white-magnet ~]# apt-get install python-dev wget tar gcc grep
+
+For Fedora, CentOS, RHEL the packages can be installed using ``yum`` as::
+
+     [root@white-magnet ~]# yum install python-devel wget tar gcc
+
+
 .. _installing-python:
 
 Installing Python
@@ -206,6 +221,70 @@ After adding the symlink, you can test your Python vesrion as shown below::
 .. _`Python website`: http://www.python.org/download/releases/
 
 
+.. _mysql-setup:
+
+MySQL Setup
+----------------
+
+Videocache requires MySQL to store information about cached videos, maintain a queue of videos to be cached in background
+and other activity. We need to install and setup MySQL before we can proceed with Videocache installation.
+
+If you are Ubuntu, Debian, LinuxMint or on a Debian derivative OS, you can run the following command to install MySQL::
+
+    [user@white-magnet ~]# apt-get install mysql-server mysql-client libmysqlclient-dev
+
+If you are on Fedora, RHEL, CentOS or any other distro which uses Yum as package manager, you can use the following command
+to install MySQL::
+
+    [root@white-magnet ~]# yum install mysql mysql-server mysql-devel
+
+Once we are done with installing MySQL, we to setup a database for Videocache. We need to use database name, user name and
+password for this. You can set them as per your convenience. Here are we using,
+
+* Database Name : ``vcdb``
+* Database Username : ``vc_dbuser``
+* Database Password : ``password``
+
+Now, we need to use the above details to setup database for Videocache as shown below::
+
+    [root@white-magnet ~]# mysql -u root -p
+    Enter password:
+
+    mysql> create database vcdb;
+
+    mysql> grant all on vcdb.* to 'vc_dbuser'@'localhost' identified by 'password';
+
+    mysql> flush privileges;
+
+Remeber the username, password and database name you used above as it'll be required when you run install script ``install.sh``.
+
+.. _apache-web-server-setup:
+
+Apache Web Server Setup
+-----------------------
+
+Videocache require Apache Web Server to serve cached videos. If Apache is not installed already on our server, we can install
+apache on Ubuntu, Debian, LinuxMint using the command::
+
+    [user@white-magnet ~]# apt-get install apache2
+
+On Fedora, CentOS, RHEL we can use yum to install Apache (``httpd``) as below::
+
+    [root@white-magnet ~]# yum install httpd
+
+If we are planning to run Squid in ``transparent`` or ``tproxy`` mode, we must configure Apache to listen on port other than ``80``.
+We can use any other free port like ``81`` or ``8181``. Now, we need to locate Apache configuration file to make the appropriate changes.
+The Apache config file on Ubuntu, Debian, LinuxMint is located at ``/etc/apache2/ports.conf`` while on Fedora, CentOS, RHEL it's located
+at ``/etc/httpd/conf/httpd.conf``.
+
+Once we have the config file open, look for the lines shown below and change the port to ``81``::
+
+    NameVirtualHost *:81
+    Listen 81
+
+Now save the file.
+
+
 .. _installing-squid:
 
 Installing Squid
@@ -228,10 +307,11 @@ You can also refer to the following manuals for installing and running Squid.
 
 .. _installing-upgrading-videocache:
 
-===============================
-Installing/Upgrading Videocache
-===============================
+==================================
+Installing or Upgrading Videocache
+==================================
 
+Once we are done with the steps in :ref:`preparing-system-for-setup`, we are all set to install or upgrade Videocache.
 Installation and upgrade process for Videocache are same. You need to run the same installer script to install or upgrade.
 
 **NOTE:** If you are upgrading your Videocache, please don't forget to take a backup of your existing configuration file
