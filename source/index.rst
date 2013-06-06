@@ -10,14 +10,14 @@
 .. _what-is-videocache:
 
 ===================
-What is Videocache?
+What is VideoCache?
 ===================
 
-Videocache_ is a Squid_ URL rewriter plugin written in Python_ for bandwidth optimization while
+VideoCache_ is a Squid_ URL rewriter plugin written in Python_ for bandwidth optimization while
 browsing famous video portals like Youtube_, Dailymotion_, Metacafe_ etc. It helps you save bandwidth
 when a particular video is requested more than once from the same network/machine.
 
-Squid can not cache the videos served dynamically. Videocache fits into squid to help it cache the
+Squid can not cache the videos served dynamically. VideoCache fits into squid to help it cache the
 videos as well. The cached videos are stored on your proxy server's local storage or on a storage
 server in your network. These cached videos can be served to your clients at a very fast speed saving
 you significant upstream bandwidth.
@@ -25,7 +25,7 @@ you significant upstream bandwidth.
 **NOTE:** If you are new to Squid or you are willing to explore Squid in details, please check
 my book `Squid Proxy Server 3.1 : Beginner's Guide`_.
 
-.. _Videocache: http://cachevideos.com/
+.. _VideoCache: http://cachevideos.com/
 .. _Squid: http://www.squid-cache.org/
 .. _Python: http://www.python.org/
 .. _Youtube: http://www.youtube.com/
@@ -40,7 +40,7 @@ my book `Squid Proxy Server 3.1 : Beginner's Guide`_.
 Supported Websites
 ==================
 
-Below is an exhaustive list of websites partially or wholly supported by Videocache.
+Below is an exhaustive list of websites partially or wholly supported by VideoCache.
 
 These websites doesn’t normally contain any pornographic content.
 
@@ -59,7 +59,7 @@ These websites doesn’t normally contain any pornographic content.
 #. Wrzuta - www.wrzuta.pl [#f2]_
 #. Youku - www.youku.com
 
-Videocache also supports caching of videos from pornographic websites mentioned in the list below.
+VideoCache also supports caching of videos from pornographic websites mentioned in the list below.
 Visit these sites only if you are above 18 years (or permitted age in your country).
 
 #. ExtremeTube - www.extremetube.com
@@ -82,9 +82,9 @@ Visit these sites only if you are above 18 years (or permitted age in your count
 Software Dependencies
 =====================
 
-Videocache requires following software to run on your system. Though most of these software are
+VideoCache requires following software to run on your system. Though most of these software are
 already included in most of the standard Linux distributions, you need to make sure that these
-are present. If anything is missing, Videocache installer will point it out during installation.
+are present. If anything is missing, VideoCache installer will point it out during installation.
 Also, some software are required during installation only and not during runtime. Below is a list.
 
 #. Installation Dependencies
@@ -125,7 +125,7 @@ Also, some software are required during installation only and not during runtime
 Supported Platfoms and Operating Systems
 ========================================
 
-Videocache works on both 32 and 64bit platforms. It will run on most Linux/Unix based operating systems where
+VideoCache works on both 32 and 64bit platforms. It will run on most Linux/Unix based operating systems where
 the required software packages mentioned above are available. Below is a list of officially supported operating systems.
 It may also work on other Linux/Unix distributions provided the required software packages are present.
 
@@ -148,7 +148,7 @@ It may also work on other Linux/Unix distributions provided the required softwar
 Preparing System for Setup
 ==========================
 
-Before you can install Videocache on your server, you need to install and setup the required software mentioned in
+Before you can install VideoCache on your server, you need to install and setup the required software mentioned in
 :ref:`software-dependencies`.
 
 
@@ -157,7 +157,7 @@ Before you can install Videocache on your server, you need to install and setup 
 Installing Required Packages
 ----------------------------
 
-Videocache requires ``wget``, ``tar``, ``gcc``, Python development libraries during Videocache installation. We can install
+VideoCache requires ``wget``, ``tar``, ``gcc``, Python development libraries during VideoCache installation. We can install
 these packages on Ubuntu, Debian, LinuxMint using ``apt-get`` as shown below::
 
      [user@white-magnet ~]# apt-get install python-dev wget tar gcc grep
@@ -226,8 +226,8 @@ After adding the symlink, you can test your Python vesrion as shown below::
 MySQL Setup
 ----------------
 
-Videocache requires MySQL to store information about cached videos, maintain a queue of videos to be cached in background
-and other activity. We need to install and setup MySQL before we can proceed with Videocache installation.
+VideoCache requires MySQL to store information about cached videos, maintain a queue of videos to be cached in background
+and other activity. We need to install and setup MySQL before we can proceed with VideoCache installation.
 
 If you are Ubuntu, Debian, LinuxMint or on a Debian derivative OS, you can run the following command to install MySQL::
 
@@ -238,14 +238,14 @@ to install MySQL::
 
     [root@white-magnet ~]# yum install mysql mysql-server mysql-devel
 
-Once we are done with installing MySQL, we to setup a database for Videocache. We need to use database name, user name and
+Once we are done with installing MySQL, we to setup a database for VideoCache. We need to use database name, user name and
 password for this. You can set them as per your convenience. Here are we using,
 
 * Database Name : ``vcdb``
 * Database Username : ``vc_dbuser``
 * Database Password : ``password``
 
-Now, we need to use the above details to setup database for Videocache as shown below::
+Now, we need to use the above details to setup database for VideoCache as shown below::
 
     [root@white-magnet ~]# mysql -u root -p
     Enter password:
@@ -263,7 +263,7 @@ Remeber the username, password and database name you used above as it'll be requ
 Apache Web Server Setup
 -----------------------
 
-Videocache require Apache Web Server to serve cached videos. If Apache is not installed already on our server, we can install
+VideoCache require Apache Web Server to serve cached videos. If Apache is not installed already on our server, we can install
 apache on Ubuntu, Debian, LinuxMint using the command::
 
     [user@white-magnet ~]# apt-get install apache2
@@ -279,7 +279,6 @@ at ``/etc/httpd/conf/httpd.conf``.
 
 Once we have the config file open, look for the lines shown below and change the port to ``81``::
 
-    NameVirtualHost *:81
     Listen 81
 
 Now save the file.
@@ -305,21 +304,19 @@ You can also refer to the following manuals for installing and running Squid.
 .. _`Squid Proxy Server 3.1 : Beginner's Guide`: http://tinyurl.com/squidbook
 
 
-.. _installing-upgrading-videocache:
+.. _installing-videocache:
 
-==================================
-Installing or Upgrading Videocache
-==================================
+=====================
+Installing VideoCache
+=====================
 
-Once we are done with the steps in :ref:`preparing-system-for-setup`, we are all set to install or upgrade Videocache.
-Installation and upgrade process for Videocache are same. You need to run the same installer script to install or upgrade.
+Once we are done with the steps in :ref:`preparing-system-for-setup`, we are all set to install VideoCache.
+If you have VideoCache already installed on your system, you should checkout :ref:`upgrading-videocache`
+instead. You need to run the same installer script to install.
 
-**NOTE:** If you are upgrading your Videocache, please don't forget to take a backup of your existing configuration file
-located at */etc/videocache.conf*.
+Below are the steps required to install VideoCache. **You must be logged in as root or super user to perform this action**.
 
-Below are the steps required to install or upgrade Videocache. **You must be logged in as root or super user to perform this action**.
-
-#. Untar the Videocache software bundle you received in your email::
+#. Untar the VideoCache software bundle you received in your email::
 
     [root@white-magnet ~]$ tar -xvzf videocache-2.3.tar.gz
 
@@ -327,7 +324,7 @@ Below are the steps required to install or upgrade Videocache. **You must be log
 
     [root@white-magnet ~]$ cd videocache-2.3
 
-#. Run the installer script (install.sh) to install or upgrade Videocache::
+#. Run the installer script (``install.sh``) to install VideoCache::
 
     [root@white-magnet videocache-2.3]$ bash install.sh
     Checking root access..................................................Granted
@@ -347,7 +344,9 @@ Below are the steps required to install or upgrade Videocache. **You must be log
     Checking Python.h.....................................................Installed
     Checking netifaces....................................................Installed
     Checking ctypes.......................................................Installed
+    Checking importlib....................................................Installed
     Checking multiprocessing..............................................Installed
+    Checking other modules required.......................................Installed
 
 
     ------------------------Database Configuration------------------------
@@ -389,7 +388,7 @@ Below are the steps required to install or upgrade Videocache. **You must be log
 
 
     -----------------------------Client Email-----------------------------
-    Enter the email address using which you purchased Videocache: a@b.me
+    Enter the email address using which you purchased VideoCache: a@b.me
     Selected email address................................................a@b.me
 
 
@@ -419,14 +418,15 @@ Below are the steps required to install or upgrade Videocache. **You must be log
     Squid proxy...........................................................127.0.0.1:3128
 
 
-    --------------------------Install Videocache--------------------------
-    Installing Videocache.................................................Installed
+    --------------------------Install VideoCache--------------------------
+    Installing VideoCache.................................................Installed
 
-    Command used: python setup.py --squid-user proxy --client-email a@b.me --cache-host 192.168.0.100 --this-proxy 127.0.0.1:3128 --squid-access-log /var/log/squid3/access.log --apache-conf-dir /etc/apache2/conf.d/ --db-hostname localhost --db-username videocache --db-password videocache --db-database videocache install 2>&1
+    Command used: python setup.py --squid-user proxy --client-email a@b.me --cache-host 192.168.0.100 --this-proxy 127.0.0.1:3128 --squid-access-log /var/log/squid3/access.log --apache-conf-dir /etc/apache2/conf.d/ --db-hostname localhost --db-username vc_dbuser --db-password password --db-database vcdb install 2>&1
 
 
     ------------------------Install init.d Script-------------------------
     Trying to set default run levels for vc-scheduler.....................Done
+
 
     --------------------Post Installation Instructions--------------------
     Setup has completed successfully. A file instructions.txt has been created
@@ -435,7 +435,7 @@ Below are the steps required to install or upgrade Videocache. **You must be log
     FOLLOW EACH STEP CAREFULLY.
 
     ----------------------------------Step 1-----------------------------------------
-    Open the Videocache configuration file located at /etc/videocache.conf and modify
+    Open the VideoCache configuration file located at /etc/videocache.conf and modify
     any options you want. Once you are done, save the file.
 
     ----------------------------------Step 2-----------------------------------------
@@ -448,10 +448,10 @@ Below are the steps required to install or upgrade Videocache. **You must be log
 
     ----------------------------------Step 4-----------------------------------------
     Depending on the version of your Squid, open vc_squid_2.conf or vc_squid_3.conf
-    in your Videocache bundle. Copy all the lines and paste them at the top of your
+    in your VideoCache bundle. Copy all the lines and paste them at the top of your
     Squid configuration file squid.conf.
 
-    Also add the following lines at the top of your Squid config file squid.conf.
+    Also, add the following lines at the top of your Squid config file squid.conf.
     #-----------------CUT FROM HERE-------------------
     access_log /var/log/squid3/access.log
     acl this_machine src 127.0.0.1 192.168.0.100
@@ -474,6 +474,76 @@ Below are the steps required to install or upgrade Videocache. **You must be log
     In case of any bugs or problems, visit http://cachevideos.com/ and contact us.
     [root@white-magnet videocache-2.3]$
 
+
+
+.. _upgrading-videocache:
+
+====================
+Upgrading VideoCache
+====================
+
+Upgrading VideoCache is easy. To upgrade VideoCache, you can either use the bundled upgrade script ``upgrade.py``
+or you can simple override your existing VideoCache installation by following the steps described in
+:ref:`installing-videocache`.
+
+**NOTE:** Before upgrading VideoCache, please don't forget to take a backup of your existing configuration file
+located at */etc/videocache.conf*.
+
+To upgrade VideoCache using upgrade script follow the steps listed below. **You must be logged in as root or super user to perform this action**.
+
+#. Untar the VideoCache software bundle you received in your email::
+
+    [root@white-magnet ~]$ tar -xvzf videocache-2.3.tar.gz
+
+#. Navigate to the directory videocache-2.3::
+
+    [root@white-magnet ~]$ cd videocache-2.3
+
+#. Run the upgrade script (``upgrade.py``) to install VideoCache::
+
+    [root@white-magnet videocache-2.3]$ python upgrade.py
+    Videocache upgraded successfully. Please follow the following instructions now.
+
+    ----------------------------------Step 1-----------------------------------------
+    Restart Apache web server on your machine by using the following command
+    [root@white-magnet ~]$ apachectl -k restart
+
+    ----------------------------------Step 2-----------------------------------------
+    Depending on the version of your Squid, open vc_squid_2.conf or vc_squid_3.conf
+    in your Videocache bundle. Copy all the lines and paste them at the top of your
+    Squid configuration file squid.conf. Remove the old videocache specific lines first.
+
+    Also, add the following lines at the top of your Squid config file squid.conf.
+    #-----------------CUT FROM HERE-------------------
+    access_log /var/log/squid3/access.log
+    acl this_machine src 127.0.0.1 192.168.0.100
+    http_access allow this_machine
+    #-----------------CUT TILL HERE-------------------
+
+    ----------------------------------Step 3-----------------------------------------
+    Restart videocache scheduler vc-scheduler using the following command.
+    [root@white-magnet ~]$ vc-scheduler -s restart
+
+    ----------------------------------Step 4-----------------------------------------
+    Restart Squid proxy server daemon using the following command.
+    [root@white-magnet ~]$ /etc/init.d/squid restart
+
+    ----------------------------------Step 5-----------------------------------------
+    Go the videocache log directory /var/log/videocache/ and check various log files
+    to have a look at videocache activity.
+
+
+    Check Manual.pdf file for detailed configurations of squid, apache and videocache.
+    In case of any bugs or problems, visit http://cachevideos.com/ and contact us.
+
+    [root@white-magnet videocache-2.3]$ videocache-2.3
+
+
+.. _running-videocache:
+
+==================
+Running VideoCache
+==================
 
 .. rubric:: Footnotes
 
