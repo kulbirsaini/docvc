@@ -539,6 +539,52 @@ To upgrade VideoCache using upgrade script follow the steps listed below. **You 
     [root@white-magnet videocache-2.3]$ videocache-2.3
 
 
+.. _configure-videocache:
+
+====================
+Configure VideoCache
+====================
+
+VideoCache plugin and other components like ``vc-scheduler`` are managed by a single configuration file
+located at ``/etc/videocache.conf``. The configuration file contains extensive documentation in form of
+inline comments. To customize VideoCache according to your environment, please go through the comments
+for the options you wish to set/modify and assign appropriate values.
+
+The important options you may want to take a look at are ``client_email``, ``cache_host``, ``base_dir``,
+``max_cache_processes``, ``max_cache_speed``, ``disk_cleanup_strategy`` etc. Once you are done making
+changes, save the file and run the VideoCache update command ``vc-update`` as shown below::
+
+
+    [root@white-magnet ~]$ vc-update
+    Videocache updated successfully. Please follow the following instructions now.
+
+    ----------------------------------Step 1-----------------------------------------
+    Restart Apache web server on your machine by using the following command
+    [root@white-magnet ~]$ apachectl -k restart
+
+    ----------------------------------Step 2-----------------------------------------
+    Restart videocache scheduler vc-scheduler using the following command.
+    [root@white-magnet ~]$ vc-scheduler -s restart
+
+    ----------------------------------Step 3-----------------------------------------
+    Restart Squid proxy server daemon using the following command.
+    [root@white-magnet ~]$ /etc/init.d/squid restart
+
+    In case of any bugs or problems, visit http://cachevideos.com/ and contact us.
+    [root@white-magnet ~]$
+
+
+Follow the instructions printed carefully in order.
+
+
+.. _configure-squid:
+
+===============
+Configure Squid
+===============
+
+
+
 .. _running-videocache:
 
 ==================
