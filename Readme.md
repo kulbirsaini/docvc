@@ -2,6 +2,12 @@
 
 DocVC or Documentation for [VideoCache](https://github.com/kulbirsaini/videocache) is an old project to generate HTML documentation using [Sphinx](http://sphinx-doc.org/). This is no longer maintained.
 
+## Related Projects
+
+* [Videocache](https://github.com/kulbirsaini/videocache)
+* [VCSIDB](https://github.com/kulbirsaini/vcsidb)
+* [Videocache-Ruby](https://github.com/kulbirsaini/videocache-ruby)
+
 ## How To
 
 ###### Install Sphinx
