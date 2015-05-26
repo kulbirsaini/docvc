@@ -1,6 +1,34 @@
 ## DocVC
 
-DocVC or Documentation for [VideoCache](https://github.com/kulbirsaini/videocache) is an old project to generate HTML/PDF documentation using [Sphinx](http://sphinx-doc.org/). This is no longer maintained.
+DocVC or Documentation for [VideoCache](https://github.com/kulbirsaini/videocache) is an old project to generate HTML documentation using [Sphinx](http://sphinx-doc.org/). This is no longer maintained.
+
+## How To
+
+###### Install Sphinx
+
+```bash
+$ sudo apt-get install python-sphinx
+```
+
+###### Install Sphinx Bootstrap Theme
+
+```bash
+$ sudo pip install sphinx_bootstrap_theme
+```
+
+###### Generate HTML Documentation
+
+Documentation will be generated in `build` directory.
+
+```bash
+[saini@zenbook ~/code/docvc] $ make html
+```
+
+###### Generate LaTeX Documentation
+
+```bash
+[saini@zenbook ~/code/docvc] $ make latex
+```
 
 ## About Me
 
